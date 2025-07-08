@@ -1,62 +1,61 @@
 package com.example.projectnailsschedule.presentation.ui.screens.about
 
-import android.content.Intent
+import android.util.Log
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.net.toUri
+import coil.compose.AsyncImage
+import com.example.projectnailsschedule.BuildConfig
+import com.example.projectnailsschedule.presentation.ui.theme.AppTheme
 
 @Composable
 fun AboutScreen(
 ) {
-    val context = LocalContext.current
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Запись клиентов",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+        )
 
-    Scaffold { innerPadding ->
-        Column(
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text("Версия ${BuildConfig.VERSION_NAME}")
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        AsyncImage(
+            model = "https://myschedule.myddns.me/ic_launcher.png",
+            contentDescription = "Иконка приложения",
+            onError = { error -> Log.e("AsyncImage", "$error") },
             modifier = Modifier
-                .padding(innerPadding)
-                .padding(16.dp)
-                .fillMaxSize()
-        ) {
-            Text(
-                text = "Запись клиентов",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text("Версия: 8")
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Button(onClick = {
-                val intent = Intent(Intent.ACTION_VIEW, "https://myschedule.myddns.me".toUri())
-                context.startActivity(intent)
-            }) {
-                Text("Открыть сайт")
-            }
-        }
+                .size(128.dp)
+        )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun AboutScreenPreview() {
-    MaterialTheme {
+fun AboutScreenPreviewLight() {
+    AppTheme {
         AboutScreen(
         )
     }
