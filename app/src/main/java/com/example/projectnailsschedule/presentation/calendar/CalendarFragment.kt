@@ -17,8 +17,8 @@ import com.example.projectnailsschedule.databinding.FragmentCalendarBinding
 import com.example.projectnailsschedule.domain.models.DateParams
 import com.example.projectnailsschedule.presentation.calendar.calendarRecyclerView.CalendarRvAdapter
 import com.example.projectnailsschedule.presentation.calendar.dateShortRecyclerView.DateShortAdapter
-import com.example.projectnailsschedule.util.Util
-import com.example.projectnailsschedule.util.rustore.RuStoreAd
+import com.example.projectnailsschedule.utils.Util
+import com.example.projectnailsschedule.utils.rustore.RuStoreAd
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope

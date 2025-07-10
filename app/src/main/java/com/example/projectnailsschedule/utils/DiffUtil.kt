@@ -1,4 +1,4 @@
-package com.example.projectnailsschedule.util
+package com.example.projectnailsschedule.utils
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil

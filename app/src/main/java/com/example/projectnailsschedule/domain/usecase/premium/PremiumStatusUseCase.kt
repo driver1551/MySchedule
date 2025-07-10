@@ -2,7 +2,7 @@ package com.example.projectnailsschedule.domain.usecase.premium
 
 import com.example.projectnailsschedule.domain.models.dto.PremiumStatusDto
 import com.example.projectnailsschedule.domain.repository.api.premiumApi.PremiumApi
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

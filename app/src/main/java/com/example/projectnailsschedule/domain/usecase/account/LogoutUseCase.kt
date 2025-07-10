@@ -1,8 +1,7 @@
 package com.example.projectnailsschedule.domain.usecase.account
 
-import com.example.projectnailsschedule.BuildConfig
 import com.example.projectnailsschedule.domain.repository.api.LogoutApi
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response

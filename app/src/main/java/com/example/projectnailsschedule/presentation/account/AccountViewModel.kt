@@ -14,7 +14,7 @@ import com.example.projectnailsschedule.domain.usecase.account.RegistrationUseCa
 import com.example.projectnailsschedule.domain.usecase.account.ResendConfirmationEmailUseCase
 import com.example.projectnailsschedule.domain.usecase.account.SendAccConfirmation
 import com.example.projectnailsschedule.domain.usecase.account.SetJwt
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

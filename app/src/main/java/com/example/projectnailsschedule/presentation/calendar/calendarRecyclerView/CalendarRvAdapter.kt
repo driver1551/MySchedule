@@ -23,7 +23,7 @@ import com.example.projectnailsschedule.R
 import com.example.projectnailsschedule.domain.models.CalendarDateModelDb
 import com.example.projectnailsschedule.domain.models.DateParams
 import com.example.projectnailsschedule.presentation.calendar.DateParamsViewModel
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

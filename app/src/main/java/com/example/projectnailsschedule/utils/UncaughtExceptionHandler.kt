@@ -1,4 +1,4 @@
-package com.example.projectnailsschedule.util
+package com.example.projectnailsschedule.utils
 
 import android.util.Log
 import com.example.projectnailsschedule.domain.models.UserData
@@ -38,7 +38,7 @@ class UncaughtExceptionHandler(
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                sendUserDataUseCase.execute(userData)
+                sendUserDataUseCase.execute()
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {

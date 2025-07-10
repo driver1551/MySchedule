@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectnailsschedule.R
 import ru.rustore.sdk.billingclient.model.product.Product
-import com.example.projectnailsschedule.util.createDiffUtil
+import com.example.projectnailsschedule.utils.createDiffUtil
 import coil.load
 import com.example.projectnailsschedule.databinding.ItemProductViewHolderBinding
-import com.example.projectnailsschedule.util.extensions.getStringRes
 
 class ProductsAdapter(
     private val onProductClick: (Product) -> Unit,

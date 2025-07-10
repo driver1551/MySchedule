@@ -5,7 +5,7 @@ import com.example.projectnailsschedule.data.storage.ScheduleDb
 import com.example.projectnailsschedule.domain.models.AppointmentModelDb
 import com.example.projectnailsschedule.domain.models.ClientModelDb
 import com.example.projectnailsschedule.domain.repository.repo.ScheduleRepository
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import java.time.LocalDate
 
 class ScheduleRepositoryImpl(context: Context) : ScheduleRepository {

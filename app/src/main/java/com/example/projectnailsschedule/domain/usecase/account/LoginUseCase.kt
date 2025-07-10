@@ -1,11 +1,10 @@
 package com.example.projectnailsschedule.domain.usecase.account
 
 import android.util.Log
-import com.example.projectnailsschedule.BuildConfig
 import com.example.projectnailsschedule.domain.models.dto.LoginResponseDto
 import com.example.projectnailsschedule.domain.models.User
 import com.example.projectnailsschedule.domain.repository.api.LoginApi
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response

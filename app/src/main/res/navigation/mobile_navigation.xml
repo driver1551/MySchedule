@@ -73,7 +73,7 @@
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.example.projectnailsschedule.presentation.settings.SettingsFragmentCompat"
+        android:name="com.example.projectnailsschedule.presentation.settings.SettingsFragment"
         android:label="@string/menu_settings" />
 
     <fragment

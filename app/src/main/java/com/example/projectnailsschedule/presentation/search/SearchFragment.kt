@@ -22,8 +22,8 @@ import com.example.projectnailsschedule.databinding.SelectUnifBinding
 import com.example.projectnailsschedule.domain.models.AppointmentModelDb
 import com.example.projectnailsschedule.domain.models.DateParams
 import com.example.projectnailsschedule.presentation.calendar.DateParamsViewModel
-import com.example.projectnailsschedule.util.Util
-import com.example.projectnailsschedule.util.rustore.RuStoreAd
+import com.example.projectnailsschedule.utils.Util
+import com.example.projectnailsschedule.utils.rustore.RuStoreAd
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers

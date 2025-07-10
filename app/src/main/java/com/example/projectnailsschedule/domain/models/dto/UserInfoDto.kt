@@ -31,29 +31,4 @@ object UserInfoDtoManager {
     fun clearUserDto() {
         userInfoDto = null
     }
-
-    // Обновляет отдельные поля UserDto, создавая копию объекта с изменёнными значениями
-    fun updateUserDto(
-        id: Long? = null,
-        username: String? = null,
-        userEmail: String? = null,
-        emailVerified: Boolean? = null,
-        enabled: Boolean? = null,
-        accountNonLocked: Boolean? = null,
-        authorities: List<String>? = null,
-        credentialsNonExpired: Boolean? = null,
-        accountNonExpired: Boolean? = null
-    ) {
-        userInfoDto = userInfoDto?.copy(
-            id = id ?: userInfoDto!!.id,
-            username = username ?: userInfoDto!!.username,
-            userEmail = userEmail ?: userInfoDto!!.userEmail,
-            emailVerified = emailVerified ?: userInfoDto!!.emailVerified,
-            enabled = enabled ?: userInfoDto!!.enabled,
-            accountNonLocked = accountNonLocked ?: userInfoDto!!.accountNonLocked,
-            authorities = authorities ?: userInfoDto!!.authorities,
-            credentialsNonExpired = credentialsNonExpired ?: userInfoDto!!.credentialsNonExpired,
-            accountNonExpired = accountNonExpired ?: userInfoDto!!.accountNonExpired
-        )
-    }
 }

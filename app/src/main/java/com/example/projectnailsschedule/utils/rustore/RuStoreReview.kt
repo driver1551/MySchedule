@@ -1,9 +1,6 @@
-package com.example.projectnailsschedule.util.rustore
+package com.example.projectnailsschedule.utils.rustore
 
-import android.util.Log
 import com.example.projectnailsschedule.domain.usecase.appointmentUC.SearchAppointmentUseCase
-import ru.rustore.sdk.review.RuStoreReviewManagerFactory
-import ru.rustore.sdk.review.model.ReviewInfo
 import javax.inject.Inject
 
 /** Класс, который просит пользователя поставить оценку приложению

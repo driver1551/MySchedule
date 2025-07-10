@@ -24,7 +24,7 @@ import com.example.projectnailsschedule.domain.models.ClientModelDb
 import com.example.projectnailsschedule.domain.models.ProcedureModelDb
 import com.example.projectnailsschedule.presentation.calendar.DateParamsViewModel
 import com.example.projectnailsschedule.presentation.clients.ClientsViewModel
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.Calendar

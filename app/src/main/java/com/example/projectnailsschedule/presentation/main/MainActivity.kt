@@ -22,7 +22,7 @@ import com.example.projectnailsschedule.R
 import com.example.projectnailsschedule.data.worker.SyncWorker
 import com.example.projectnailsschedule.databinding.ActivityMainBinding
 import com.example.projectnailsschedule.domain.models.UserDataManager
-import com.example.projectnailsschedule.util.rustore.RuStoreAd
+import com.example.projectnailsschedule.utils.rustore.RuStoreAd
 import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -87,11 +87,6 @@ class MainActivity : AppCompatActivity() {
 
         val lifecycleObserver = AppLifecycleObserver()
         lifecycle.addObserver(lifecycleObserver)
-
-        // set theme from shared prefs
-        val currentUserTheme = mainViewModel.getUserTheme()
-        val currentUserThemeId = resources.getIdentifier(currentUserTheme, "style", packageName)
-        setTheme(currentUserThemeId)
 
         // set UserData singleton
         CoroutineScope(Dispatchers.IO).launch {

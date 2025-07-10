@@ -1,4 +1,4 @@
-package com.example.projectnailsschedule.util.rustore
+package com.example.projectnailsschedule.utils.rustore
 
 import android.content.Context
 import android.util.Log

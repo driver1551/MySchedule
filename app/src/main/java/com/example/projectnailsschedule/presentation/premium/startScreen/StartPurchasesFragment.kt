@@ -13,7 +13,7 @@ import com.example.projectnailsschedule.R
 import com.example.projectnailsschedule.databinding.FragmentStartPurchasesBinding
 import com.example.projectnailsschedule.domain.models.rustoreBilling.StartPurchasesEvent
 import com.example.projectnailsschedule.domain.models.rustoreBilling.StartPurchasesState
-import com.example.projectnailsschedule.util.extensions.showToast
+import com.example.projectnailsschedule.utils.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ru.rustore.sdk.billingclient.model.purchase.PurchaseAvailabilityResult

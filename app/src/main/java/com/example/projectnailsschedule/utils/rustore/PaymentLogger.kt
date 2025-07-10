@@ -1,4 +1,4 @@
-package com.example.projectnailsschedule.util.rustore
+package com.example.projectnailsschedule.utils.rustore
 
 import android.util.Log
 import ru.rustore.sdk.billingclient.provider.logger.ExternalPaymentLogger

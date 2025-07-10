@@ -1,4 +1,4 @@
-package com.example.projectnailsschedule.util.extensions
+package com.example.projectnailsschedule.utils.extensions
 
 import androidx.annotation.StringRes
 import com.example.projectnailsschedule.R

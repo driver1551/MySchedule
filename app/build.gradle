@@ -128,6 +128,7 @@ dependencies {
     // Hilt
     implementation "com.google.dagger:hilt-android:2.48.1"
     kapt "com.google.dagger:hilt-compiler:2.48.1"
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     // Ad SDK
     implementation 'com.my.target:mytarget-sdk:5.16.5'
@@ -180,6 +181,7 @@ dependencies {
 
     // Coil
     implementation "io.coil-kt:coil-compose:2.4.0"
+
 }
 
 tasks.withType(Test).configureEach {

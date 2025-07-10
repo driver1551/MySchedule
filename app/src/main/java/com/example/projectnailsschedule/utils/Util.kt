@@ -1,4 +1,4 @@
-package com.example.projectnailsschedule.util
+package com.example.projectnailsschedule.utils
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint

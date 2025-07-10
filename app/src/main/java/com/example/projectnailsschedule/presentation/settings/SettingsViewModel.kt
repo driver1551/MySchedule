@@ -2,95 +2,104 @@ package com.example.projectnailsschedule.presentation.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.projectnailsschedule.domain.models.FaqModel
 import com.example.projectnailsschedule.domain.models.dto.UserInfoDto
 import com.example.projectnailsschedule.domain.models.dto.UserInfoDtoManager
 import com.example.projectnailsschedule.domain.usecase.account.GetJwt
 import com.example.projectnailsschedule.domain.usecase.account.GetUserInfoApiUseCase
-import com.example.projectnailsschedule.domain.usecase.apiUC.GetFaqUseCase
 import com.example.projectnailsschedule.domain.usecase.apiUC.serverSyncUC.DisableSyncUseCase
 import com.example.projectnailsschedule.domain.usecase.apiUC.serverSyncUC.EnableSyncUseCase
 import com.example.projectnailsschedule.domain.usecase.rustore.CheckRuStoreLoginStatus
 import com.example.projectnailsschedule.domain.usecase.rustore.GetPurchasesUseCase
-import com.example.projectnailsschedule.domain.usecase.settingsUC.GetLanguageUseCase
-import com.example.projectnailsschedule.domain.usecase.settingsUC.GetThemeUseCase
-import com.example.projectnailsschedule.domain.usecase.settingsUC.GetUserThemeUseCase
-import com.example.projectnailsschedule.domain.usecase.settingsUC.SetDarkThemeUseCase
-import com.example.projectnailsschedule.domain.usecase.settingsUC.SetLanguageUseCase
-import com.example.projectnailsschedule.domain.usecase.settingsUC.SetLightThemeUseCase
-import com.example.projectnailsschedule.domain.usecase.settingsUC.SetUserThemeUseCase
-import com.example.projectnailsschedule.domain.usecase.util.RestartAppUseCase
-import com.example.projectnailsschedule.domain.usecase.util.UpdateUserDataUseCase
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.domain.usecase.settingsUC.GetSpinnersStatusUseCase
+import com.example.projectnailsschedule.domain.usecase.settingsUC.SetSpinnerStatusUseCase
+import com.example.projectnailsschedule.presentation.ui.screens.settings.SettingsUiState
+import com.example.projectnailsschedule.utils.Util
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
+import ru.rustore.sdk.billingclient.RuStoreBillingClient
+import ru.rustore.sdk.billingclient.model.purchase.PurchaseAvailabilityResult
+import ru.rustore.sdk.billingclient.utils.pub.checkPurchasesAvailability
 import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val setLightThemeUseCase: SetLightThemeUseCase,
-    private val setDarkThemeUseCase: SetDarkThemeUseCase,
-    private val getThemeUseCase: GetThemeUseCase,
-    private val getLanguageUseCase: GetLanguageUseCase,
-    private val setLanguageUseCase: SetLanguageUseCase,
-    private val setUserThemeUseCase: SetUserThemeUseCase,
-    private val getUserThemeUseCase: GetUserThemeUseCase,
-    private var restartAppUseCase: RestartAppUseCase,
-    private var updateUserDataUseCase: UpdateUserDataUseCase,
-    private var getFaqUseCase: GetFaqUseCase,
-
-    private var getUserInfoApi: GetUserInfoApiUseCase,
-    private var getJwt: GetJwt,
-    private var enableSyncUseCase: EnableSyncUseCase,
-    private var disableSyncUseCase: DisableSyncUseCase,
-
+    private val getUserInfoApi: GetUserInfoApiUseCase,
+    private val getJwt: GetJwt,
+    private val enableSyncUseCase: EnableSyncUseCase,
+    private val disableSyncUseCase: DisableSyncUseCase,
     private val getRuStoreLoginStatus: CheckRuStoreLoginStatus,
-    private var getPurchasesUseCase: GetPurchasesUseCase,
+    private val getPurchasesUseCase: GetPurchasesUseCase,
+    private val getSpinnersStatusUseCase: GetSpinnersStatusUseCase,
+    private val setSpinnerStatusUseCase: SetSpinnerStatusUseCase
 ) : ViewModel() {
 
+    private val _uiState = MutableStateFlow(SettingsUiState())
+    val uiState = _uiState.asStateFlow()
+
+    private val _events = MutableSharedFlow<SettingsUiEvent>()
+    val events = _events.asSharedFlow()
+
     init {
-        //loadTheme()
+        loadSettings()
     }
 
-    var darkThemeOn: Boolean? = null
+    fun loadSettings() {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
 
-    fun setLightTheme() {
-        setLightThemeUseCase.execute()
-        darkThemeOn = false
+            val userInfo = getUserInfoApi()
+            val isAuthorizedRuStore = isAuthorizedRuStore()
+            val isSubscriber = isSubscribed()
+            val spinnerStatus = getSpinnersStatusUseCase.execute()
+
+            val available = userInfo != null &&
+                    (userInfo.betaTester == true || (isAuthorizedRuStore && isSubscriber))
+
+            val enabled = userInfo?.syncEnabled == true
+
+            _uiState.update {
+                it.copy(
+                    isLoading = false,
+                    spinnersEnabled = spinnerStatus,
+                    syncAvailable = available,
+                    syncEnabled = enabled
+                )
+            }
+        }
     }
 
-    fun setDarkTheme() {
-        setDarkThemeUseCase.execute()
-        darkThemeOn = true
+    fun toggleSync() {
+        viewModelScope.launch {
+            if (!_uiState.value.syncAvailable) return@launch
+            val current = _uiState.value.syncEnabled
+            if (current) disableSync() else enableSync()
+
+            _uiState.update { it.copy(syncEnabled = !current) }
+        }
     }
 
-    private fun loadTheme() {
-        darkThemeOn = getThemeUseCase.execute()
+    fun toggleSpinners() {
+        val current = _uiState.value.spinnersEnabled
+        if (current)
+            setSpinnerStatusUseCase.invoke(false)
+        else
+            setSpinnerStatusUseCase.invoke(true)
+        _uiState.update { it.copy(spinnersEnabled = !current) }
     }
 
-    fun setLanguage(language: String) {
-    }
-
-    fun setUserTheme(theme: String) {
-        setUserThemeUseCase.execute(theme)
-    }
-
-    fun getUserTheme(): String {
-        return getUserThemeUseCase.execute()
-    }
-
-    fun restartApp() {
-        restartAppUseCase.execute()
-    }
-
-    fun updateUserData(event: String) {
-        updateUserDataUseCase.execute(event)
-    }
-
-    suspend fun getFaq(): List<FaqModel> {
-        return getFaqUseCase.execute()
+    fun onSupportMailClicked() {
+        viewModelScope.launch {
+            _events.emit(SettingsUiEvent.SendSupportEmail)
+        }
     }
 
     suspend fun getUserInfoApi(): UserInfoDto? {
@@ -127,6 +136,7 @@ class SettingsViewModel @Inject constructor(
     }
 
     suspend fun isSubscribed(): Boolean {
+        if (!canSafelyCheckPurchases()) return false
         // Проверяем, куплена ли подписка у пользователя
         return getPurchasesUseCase.execute().fold(
             onSuccess = {
@@ -136,5 +146,15 @@ class SettingsViewModel @Inject constructor(
                 false
             }
         )
+    }
+
+    private suspend fun canSafelyCheckPurchases(): Boolean = suspendCancellableCoroutine { cont ->
+        RuStoreBillingClient.checkPurchasesAvailability()
+            .addOnSuccessListener {
+                cont.resume(it is PurchaseAvailabilityResult.Available) {}
+            }
+            .addOnFailureListener {
+                cont.resume(false) {}
+            }
     }
 }

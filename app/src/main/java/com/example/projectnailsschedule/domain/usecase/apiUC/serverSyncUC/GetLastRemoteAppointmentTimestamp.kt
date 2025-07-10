@@ -3,12 +3,11 @@ package com.example.projectnailsschedule.domain.usecase.apiUC.serverSyncUC
 import android.util.Log
 import com.example.projectnailsschedule.domain.models.dto.UserInfoDto
 import com.example.projectnailsschedule.domain.repository.api.userDataApi.AppointmentsApi
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.Date
 
 class GetLastRemoteAppointmentTimestamp {
     private val log = this::class.simpleName

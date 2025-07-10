@@ -19,8 +19,8 @@ import com.example.projectnailsschedule.domain.models.DateParams
 import com.example.projectnailsschedule.domain.models.DateWeekAppModel
 import com.example.projectnailsschedule.presentation.calendar.DateParamsViewModel
 import com.example.projectnailsschedule.presentation.calendar.listMonthView.fullMonthViewRV.FullMonthViewRVAdapter
-import com.example.projectnailsschedule.util.Util
-import com.example.projectnailsschedule.util.rustore.RuStoreAd
+import com.example.projectnailsschedule.utils.Util
+import com.example.projectnailsschedule.utils.rustore.RuStoreAd
 import com.google.android.exoplayer2.util.Log
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers

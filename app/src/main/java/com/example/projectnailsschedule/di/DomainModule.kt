@@ -244,43 +244,13 @@ class DomainModule {
     // Settings
 
     @Provides
-    fun provideGetLanguageUseCase(repository: SettingsRepository): GetLanguageUseCase {
-        return GetLanguageUseCase(repository)
-    }
-
-    @Provides
-    fun provideSetLightThemeUseCase(repository: SettingsRepository): SetLightThemeUseCase {
-        return SetLightThemeUseCase(repository)
-    }
-
-    @Provides
-    fun provideGetThemeUseCase(repository: SettingsRepository): GetThemeUseCase {
-        return GetThemeUseCase(repository)
-    }
-
-    @Provides
-    fun provideSetDarkThemeUseCase(repository: SettingsRepository): SetDarkThemeUseCase {
-        return SetDarkThemeUseCase(repository)
-    }
-
-    @Provides
-    fun provideSetLanguageUseCase(repository: SettingsRepository): SetLanguageUseCase {
-        return SetLanguageUseCase(repository)
-    }
-
-    @Provides
-    fun provideSetUserThemeUseCase(repository: SettingsRepository): SetUserThemeUseCase {
-        return SetUserThemeUseCase(repository)
-    }
-
-    @Provides
-    fun provideGetUserThemeUseCase(repository: SettingsRepository): GetUserThemeUseCase {
-        return GetUserThemeUseCase(repository)
-    }
-
-    @Provides
     fun getGetSpinnerStatusUseCase(repository: SettingsRepository): GetSpinnersStatusUseCase {
         return GetSpinnersStatusUseCase(repository)
+    }
+
+    @Provides
+    fun setSpinnerStatusUseCase(repository: SettingsRepository): SetSpinnerStatusUseCase {
+        return SetSpinnerStatusUseCase(repository)
     }
 
     // Util

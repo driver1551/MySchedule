@@ -1,7 +1,7 @@
 package com.example.projectnailsschedule.di
 
 import android.content.Context
-import com.example.projectnailsschedule.util.rustore.PaymentLogger
+import com.example.projectnailsschedule.utils.rustore.PaymentLogger
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -2,35 +2,36 @@ package com.example.projectnailsschedule.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.example.projectnailsschedule.domain.repository.repo.SettingsRepository
-import java.util.Date
+
+const val CUSTOM_PREF_NAME = "Settings"
+const val themeKey = "theme"
+const val monthKey = "month"
+const val languageKey = "language"
+const val userTheme = "theme"
+const val jwtKey = "jwt"
+const val updateKeyAppointments = "updateKeyAppointments"
+const val updateKeyCalendarDate = "updateKeyCalendarDate"
+const val spinnerStatus = "spinnerStatus"
 
 class SettingsRepositoryImpl(context: Context?) : SettingsRepository {
-
-    private val CUSTOM_PREF_NAME = "Settings"
-    private val themeKey = "theme"
-    private val monthKey = "month"
-    private val languageKey = "language"
-    private val userTheme = "theme"
-    private val jwtKey = "jwt"
-    private val updateKeyAppointments = "updateKeyAppointments"
-    private val updateKeyCalendarDate = "updateKeyCalendarDate"
 
     private val sharedPreference: SharedPreferences =
         context!!.getSharedPreferences(CUSTOM_PREF_NAME, Context.MODE_PRIVATE)
     private val defaultSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context!!)
 
     override fun setDarkTheme() {
-        val editor = sharedPreference.edit()
-        editor.putBoolean(themeKey, true)
-        editor.apply()
+        sharedPreference.edit {
+            putBoolean(themeKey, true)
+        }
     }
 
     override fun setLightTheme() {
-        val editor = sharedPreference.edit()
-        editor.putBoolean(themeKey, false)
-        editor.apply()
+        sharedPreference.edit {
+            putBoolean(themeKey, false)
+        }
     }
 
     override fun loadTheme(): Boolean {
@@ -38,9 +39,9 @@ class SettingsRepositoryImpl(context: Context?) : SettingsRepository {
     }
 
     override fun setLanguage(language: String) {
-        val editor = sharedPreference.edit()
-        editor.putString(monthKey, language)
-        editor.apply()
+        sharedPreference.edit {
+            putString(monthKey, language)
+        }
     }
 
     override fun getLanguage(): String {
@@ -48,9 +49,9 @@ class SettingsRepositoryImpl(context: Context?) : SettingsRepository {
     }
 
     override fun setUserTheme(theme: String) {
-        val editor = sharedPreference.edit()
-        editor.putString(userTheme, theme)
-        editor.apply()
+        sharedPreference.edit {
+            putString(userTheme, theme)
+        }
     }
 
     override fun getUserTheme(): String {
@@ -59,9 +60,9 @@ class SettingsRepositoryImpl(context: Context?) : SettingsRepository {
     }
 
     override fun setJwt(jwt: String?): Boolean {
-        val editor = sharedPreference.edit()
-        editor.putString(jwtKey, jwt)
-        editor.apply()
+        sharedPreference.edit {
+            putString(jwtKey, jwt)
+        }
         return true
     }
 
@@ -70,9 +71,9 @@ class SettingsRepositoryImpl(context: Context?) : SettingsRepository {
     }
 
     override fun setAppointmentsLastUpdate(time: Long) {
-        val editor = sharedPreference.edit()
-        editor.putString(updateKeyAppointments, time.toString())
-        editor.apply()
+        sharedPreference.edit {
+            putString(updateKeyAppointments, time.toString())
+        }
     }
 
     override fun getAppointmentsLastUpdate(): Long {
@@ -80,9 +81,9 @@ class SettingsRepositoryImpl(context: Context?) : SettingsRepository {
     }
 
     override fun setCalendarDateLastUpdate(time: Long) {
-        val editor = sharedPreference.edit()
-        editor.putString(updateKeyCalendarDate, time.toString())
-        editor.apply()
+        sharedPreference.edit {
+            putString(updateKeyCalendarDate, time.toString())
+        }
     }
 
     override fun getCalendarDateLastUpdate(): Long {
@@ -90,6 +91,12 @@ class SettingsRepositoryImpl(context: Context?) : SettingsRepository {
     }
 
     override fun getSpinnerStatus(): Boolean {
-        return defaultSharedPrefs.getBoolean("spinners", false)
+        return sharedPreference.getBoolean(spinnerStatus, false)
+    }
+
+    override fun setSpinnerStatus(status: Boolean) {
+        sharedPreference.edit {
+            putBoolean(spinnerStatus, status)
+        }
     }
 }

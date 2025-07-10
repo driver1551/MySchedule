@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.widget.Toast
 import androidx.documentfile.provider.DocumentFile
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException

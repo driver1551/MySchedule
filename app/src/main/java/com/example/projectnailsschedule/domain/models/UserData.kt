@@ -4,7 +4,7 @@ import android.os.Build
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.projectnailsschedule.BuildConfig
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.LinkedList

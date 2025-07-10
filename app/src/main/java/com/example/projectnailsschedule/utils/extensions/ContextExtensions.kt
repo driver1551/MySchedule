@@ -1,8 +1,8 @@
-package com.example.projectnailsschedule.util.extensions
+package com.example.projectnailsschedule.utils.extensions
 
 import android.content.Context
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.projectnailsschedule.R
 
 /** Extension-функция к Context для вывода диалогового окна */
 
@@ -35,6 +35,10 @@ fun Context.showAlertDialog(
         setOnDismissListener { onDismiss() }
         show()
     }
+}
+
+fun Context.showToast(message: String, duration: Int = Toast.LENGTH_LONG) {
+    Toast.makeText(this, message, duration).show()
 }
 
 

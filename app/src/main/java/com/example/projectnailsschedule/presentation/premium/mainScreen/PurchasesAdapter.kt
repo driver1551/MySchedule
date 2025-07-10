@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectnailsschedule.R
 import com.example.projectnailsschedule.databinding.ItemProductViewHolderBinding
-import com.example.projectnailsschedule.util.createDiffUtil
+import com.example.projectnailsschedule.utils.createDiffUtil
 import ru.rustore.sdk.billingclient.model.purchase.Purchase
 import java.text.SimpleDateFormat
 import java.util.Calendar

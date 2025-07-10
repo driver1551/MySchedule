@@ -1,11 +1,6 @@
-package com.example.projectnailsschedule.util.rustore
+package com.example.projectnailsschedule.utils.rustore
 
 import android.content.Context
-import android.util.Log
-import ru.rustore.sdk.appupdate.manager.factory.RuStoreAppUpdateManagerFactory
-import ru.rustore.sdk.appupdate.model.AppUpdateInfo
-import ru.rustore.sdk.appupdate.model.AppUpdateOptions
-import ru.rustore.sdk.appupdate.model.InstallStatus
 
 class RuStoreUpdate(val context: Context) {
     val log = "RuStoreUpdate"

@@ -41,7 +41,7 @@ import com.example.projectnailsschedule.domain.usecase.sharedPref.GetAppointment
 import com.example.projectnailsschedule.domain.usecase.sharedPref.GetCalendarDateLastUpdateUseCase
 import com.example.projectnailsschedule.domain.usecase.sharedPref.SetAppointmentLastUpdateUseCase
 import com.example.projectnailsschedule.domain.usecase.sharedPref.SetCalendarLastUpdateUseCase
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.suspendCancellableCoroutine

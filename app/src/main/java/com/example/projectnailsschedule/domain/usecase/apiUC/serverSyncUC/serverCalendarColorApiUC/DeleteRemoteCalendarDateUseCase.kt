@@ -3,7 +3,7 @@ package com.example.projectnailsschedule.domain.usecase.apiUC.serverSyncUC.serve
 import android.util.Log
 import com.example.projectnailsschedule.domain.models.CalendarDateModelDb
 import com.example.projectnailsschedule.domain.repository.api.calendarColorApi.CalendarColorApi
-import com.example.projectnailsschedule.util.Util
+import com.example.projectnailsschedule.utils.Util
 import retrofit2.Response
 
 class DeleteRemoteCalendarDateUseCase {

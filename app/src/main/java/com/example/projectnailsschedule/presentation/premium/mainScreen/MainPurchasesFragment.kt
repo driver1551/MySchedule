@@ -14,8 +14,8 @@ import com.example.projectnailsschedule.R
 import com.example.projectnailsschedule.databinding.FragmentPremiumBinding
 import com.example.projectnailsschedule.domain.models.rustoreBilling.BillingEvent
 import com.example.projectnailsschedule.domain.models.rustoreBilling.BillingState
-import com.example.projectnailsschedule.util.extensions.showAlertDialog
-import com.example.projectnailsschedule.util.extensions.showToast
+import com.example.projectnailsschedule.utils.extensions.showAlertDialog
+import com.example.projectnailsschedule.utils.extensions.showToast
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -105,7 +105,6 @@ class MainPurchasesFragment : Fragment() {
                     negativeText = "Позже"
                 )
             }
-
 
             is BillingEvent.ShowError -> {
                 if (event.error is RuStoreException) {
